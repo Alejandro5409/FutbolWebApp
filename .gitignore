@@ -1,0 +1,35 @@
+# Ejecutables y archivos de depuracion
+/Programs/*.exe
+/Programs/*.dbg
+/Programs/*.exe.manifest
+/Programs/WebApp.log
+
+# Archivos generados por el compilador
+/AppSrc/*.dep
+/AppSrc/*.fld
+/AppSrc/*.pbg
+/AppSrc/*.pdp
+/AppSrc/*.pkd
+/AppSrc/*.prp
+/AppSrc/*.err
+/AppSrc/*.prn
+
+# Preferencias y metadatos locales de Studio
+/IdeSrc/StudioMetaData.mtd
+/IdeSrc/Workspace.loc
+/IdeSrc/*.dsk
+
+# Cache de base de datos
+/Data/*.cch
+
+# Copias de seguridad y temporales
+*.bak
+*.tmp
+Thumbs.db
+Desktop.ini
+/Data/reindex.log
+# Clave de cifrado local: no publicar
+/AppSrc/LoginEncryptionKey.inc
+
+# Registro de mantenimiento
+/Data/reindex.log
