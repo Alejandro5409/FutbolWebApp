@@ -33,3 +33,4 @@ Desktop.ini
 
 # Registro de mantenimiento
 /Data/reindex.log
+/AppSrc/WebAppLocalSecrets.inc
