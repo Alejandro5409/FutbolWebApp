@@ -10,11 +10,23 @@ Práctica Data Control: aplicación web móvil de gestión de fútbol desarrolla
 
 
 
-La aplicación se abre correctamente en el entorno local de desarrollo.
+En el entorno local de desarrollo se ha comprobado:
 
 
 
-El código y la configuración de tablas están publicados en la rama `develop`. La instalación desde cero en otro equipo todavía está pendiente de validación.
+\- La apertura de la aplicación.
+
+\- El acceso desde las cinco tarjetas del Dashboard a sus listados.
+
+\- La apertura de las vistas de detalle de Entrenadores, Jugadores, Posiciones, Equipos y Ligas.
+
+
+
+El código y la configuración de tablas están publicados en la rama `develop`.
+
+
+
+La instalación desde cero en otro equipo todavía está pendiente de validación. Las comprobaciones locales descritas no constituyen una validación completa de todas las operaciones de la aplicación.
 
 
 
@@ -72,7 +84,7 @@ El código y la configuración de tablas están publicados en la rama `develop`.
 
 
 
-El archivo `sql/futbol\_estructura.sql` contiene la estructura de doce tablas:
+El archivo `sql/futbol\_estructura.sql` contiene la estructura de doce tablas.
 
 
 
@@ -121,6 +133,10 @@ ATENCIÓN: incluye instrucciones `DROP TABLE IF EXISTS`. Elimina y recrea las ta
 
 
 La exportación contiene únicamente la estructura. No incluye registros de usuarios, sesiones ni datos de demostración.
+
+
+
+La creación de las tablas no garantiza por sí sola que la aplicación quede lista para utilizarse: siguen pendientes de comprobar los datos iniciales y la configuración local necesarios.
 
 
 
@@ -183,6 +199,4 @@ Los archivos de conexión y secretos deben configurarse localmente. No se deben 
 \- Verificar la inicialización de `DFLastID`.
 
 \- Preparar datos de demostración sin información sensible.
-
-\- Comprobar la navegación completa de los cinco listados y sus detalles.
 
