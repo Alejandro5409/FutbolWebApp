@@ -34,3 +34,17 @@ Desktop.ini
 # Registro de mantenimiento
 /Data/reindex.log
 /AppSrc/WebAppLocalSecrets.inc
+# Conexion local: puede contener credenciales
+/Data/DFConnId.ini
+
+# Datos locales y archivos auxiliares de tablas
+/Data/*.dat
+/Data/*.hdr
+/Data/*.tag
+/Data/*.k[0-9]*
+
+# Registros locales
+/Data/*.log
+
+# Metadatos locales de Studio, incluidas versiones de 64 bits
+/IdeSrc/*.mtd
