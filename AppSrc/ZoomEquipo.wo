@@ -8,6 +8,8 @@ Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
 
+Use SelectLiga.wo
+
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
 
@@ -21,15 +23,14 @@ Object oZoomEquipo is a cWebView
     Set piMaxWidth to 1024
 
     Object oliga_DD is a cligaDataDictionary
-    End_Object 
+    End_Object
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
-    End_Object 
+        Set DDO_Server to oliga_DD
+    End_Object
 
-    Set Main_DD To oequipo_DD
-    Set Server  To oequipo_DD
-
+    Set Main_DD to oequipo_DD
+    Set Server to oequipo_DD
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
@@ -41,7 +42,7 @@ Object oZoomEquipo is a cWebView
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
-        End_Object 
+        End_Object
 
         Object oligaNombre is a cWebForm
             Entry_Item liga.Nombre
@@ -51,14 +52,13 @@ Object oZoomEquipo is a cWebView
             Set psLabel to "Nombre"
             Set pbPromptButton to True
 
-// ToDo: Fill in the from-child parent Select view object name for navigate forward
-//            WebRegisterPath ntNavigateForward oSelectView
+            WebRegisterPath ntNavigateForward oSelectLiga
 
             Procedure OnPrompt
                 Send NavigatePath
             End_Procedure
-        End_Object 
-    End_Object 
+        End_Object
+    End_Object
 
     Object oActionGroup is a cWebMenuGroup
 
@@ -69,18 +69,17 @@ Object oZoomEquipo is a cWebView
             Procedure OnClick
                 Send Request_Save
             End_Procedure
-
-        End_Object 
+        End_Object
 
         Object oEditBtn is a cWebMenuItem
             Set psCSSClass to "WebEditMenuItem"
             Set psCaption to "Edit"
+
             Procedure OnClick
                 Send ChangeEditMode True
                 Send SetActionButtons
             End_Procedure
-
-        End_Object 
+        End_Object
 
         Object oDeleteBtn is a cWebMenuItem
             Set psCSSClass to "WebDeleteMenuItem"
@@ -90,19 +89,18 @@ Object oZoomEquipo is a cWebView
             Procedure OnClick
                 Send Request_Delete
             End_Procedure
-
-        End_Object 
+        End_Object
 
         Object oCancelChangesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Refresh"
             Set psCaption to "Clear Changes"
             Set peActionDisplay to adMenu
+
             Procedure OnClick
                 Send RefreshRecord
             End_Procedure
-
-        End_Object 
-    End_Object 
+        End_Object
+    End_Object
 
     Procedure SetActionButtons
         tWebNavigateData NavigateData
@@ -113,7 +111,7 @@ Object oZoomEquipo is a cWebView
         Get GetNavigateData to NavigateData
         Get HasRecord of hoDD to bHasRecord
 
-        // let's hide all buttons and then Show the ones we want
+        // Hide all buttons, then show the appropriate ones.
         WebSet pbRender of oEditBtn to False
         WebSet pbRender of oSaveBtn to False
         WebSet pbRender of oCancelChangesBtn to False
@@ -130,35 +128,33 @@ Object oZoomEquipo is a cWebView
     End_Procedure
 
     Procedure OnViewSaved Handle hoServer Boolean bChanged
-        // Close after save
+        // Close after save.
         Send NavigateClose Self
     End_Procedure
 
-    // this will close the view after a delete
     Procedure OnViewDeleted Handle hoDDO
+        // Close after delete.
         Send NavigateClose Self
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
-        Case Begin
-            Case (NavigateData.eNavigateType = nfFromMain)
-                // If from main, this is a propbably a main file Select to Zoom.
-                Case Break
+        Boolean bHasRecord
+        String sNombreEquipo
 
-            Case (NavigateData.eNavigateType = nfFromParent)
-                // If from parent, this is a constrained drill down.
-                Case Break
+        Get HasRecord of oequipo_DD to bHasRecord
 
-            Case (NavigateData.eNavigateType = nfFromChild)
-                // If from child, this is a probably a parent Zoom from a Zoom.
-                Case Break
+        If (bHasRecord) Begin
+            Move (Trim(equipo.Nombre)) to sNombreEquipo
 
-            Case Else // must be nfUndefined
-
-        Case End
+            Send SetHeaderCaption ("Equipo:" * sNombreEquipo)
+            Send SetBreadCrumbCaption sNombreEquipo
+        End
+        Else Begin
+            Send SetHeaderCaption "Nuevo equipo"
+            Send SetBreadCrumbCaption "Nuevo equipo"
+        End
 
         Send SetActionButtons
-
     End_Procedure
 
-End_Object 
+End_Object

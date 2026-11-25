@@ -1,0 +1,449 @@
+/* =========================================
+   FUTBOLWEBAPP · COLORES DEL TEMA
+   ========================================= */
+
+:root {
+    --df-MainDark: #102b22;
+    --df-MainRegular: #176b45;
+    --df-MainMedium: #248357;
+    --df-MainLight: #369b6d;
+
+    --club-dark: #102b22;
+    --club-green: #176b45;
+    --club-red: #b43e38;
+    --club-background: #edf2ef;
+    --club-text: #173b2c;
+    --club-muted: #61766b;
+    --club-border: #dbe5de;
+}
+
+
+/* =========================================
+   LOGIN · CONSERVAR LA PORTADA
+   ========================================= */
+
+.LoginView .FutbolLoginButton button {
+    background: #176b45;
+    color: #ffffff;
+    border: 1px solid #176b45;
+    border-radius: 8px;
+}
+
+.WebView.LoginView,
+.WebView.LoginView > .WebContainer {
+    background: linear-gradient(135deg, #102b22, #24634b);
+}
+
+
+/* =========================================
+   DASHBOARD · BASE
+   ========================================= */
+
+.WebView.Dashboard {
+    background: var(--club-background) !important;
+}
+
+.Dashboard > .WebContainer,
+.Dashboard .WebPanel,
+.Dashboard .WebContainer,
+.Dashboard .ClubDashboard,
+.Dashboard .ClubDashboard > .WebCon_Sizer,
+.Dashboard .ClubDashboard .WebGrp_Content {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+/* Aire alrededor del contenido */
+.Dashboard .ClubDashboard {
+    padding-top: 22px;
+    padding-bottom: 30px;
+}
+
+/* Espacio entre los bloques */
+.Dashboard .ClubWelcome,
+.Dashboard .ClubCard {
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+.Dashboard .ClubWelcome {
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   BIENVENIDA · IDENTIDAD DE CLUB
+   ========================================= */
+
+.Dashboard .club-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    box-sizing: border-box;
+    min-height: 230px;
+    padding: 38px 42px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0,
+            transparent 90px,
+            rgba(255, 255, 255, 0.025) 90px,
+            rgba(255, 255, 255, 0.025) 180px
+        ),
+        linear-gradient(120deg, #102b22, #1d6547);
+
+    border: 1px solid #23583f;
+    border-radius: 18px;
+    color: #ffffff;
+
+    box-shadow: 0 12px 30px rgba(16, 43, 34, 0.12);
+}
+
+.Dashboard .club-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 42px;
+    width: 58px;
+    height: 4px;
+
+    background: var(--club-red);
+    border-radius: 0 0 4px 4px;
+}
+
+.Dashboard .club-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.Dashboard .club-eyebrow {
+    display: block;
+    margin-bottom: 12px;
+
+    color: #b6d5c3;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+}
+
+.Dashboard .club-hero h1 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.Dashboard .club-hero p {
+    margin: 0;
+    max-width: 420px;
+
+    color: #d4e5db;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.Dashboard .club-hero-label {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 7px 11px;
+
+    border: 1px solid rgba(255, 255, 255, 0.19);
+    border-radius: 5px;
+
+    color: #e2eee7;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   CAMPO DECORATIVO
+   ========================================= */
+
+.Dashboard .club-pitch {
+    position: absolute;
+    z-index: 0;
+    top: 28px;
+    right: -32px;
+    bottom: 28px;
+    width: 310px;
+
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    border-radius: 5px;
+
+    transform: rotate(-9deg);
+    pointer-events: none;
+}
+
+.Dashboard .club-pitch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+
+    border-left: 2px solid rgba(255, 255, 255, 0.13);
+}
+
+.Dashboard .club-pitch::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -2px;
+    width: 42px;
+    height: 85px;
+
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    transform: translateY(-50%);
+}
+
+.Dashboard .club-pitch-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75px;
+    height: 75px;
+
+    border: 2px solid rgba(255, 255, 255, 0.13);
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+
+/* =========================================
+   TARJETAS DE ACCESO
+   ========================================= */
+
+.Dashboard .club-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    box-sizing: border-box;
+    min-height: 142px;
+    padding: 28px;
+
+    background: #ffffff;
+    border: 1px solid var(--club-border);
+    border-radius: 14px;
+
+    color: var(--club-text);
+    box-shadow: 0 4px 14px rgba(16, 43, 34, 0.04);
+    cursor: pointer;
+
+    transition:
+        transform 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+/* Detalle lateral que aparece al interactuar */
+.Dashboard .club-card::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    bottom: 30px;
+    left: 0;
+    width: 3px;
+
+    background: var(--club-red);
+    border-radius: 0 3px 3px 0;
+    opacity: 0;
+
+    transition: opacity 180ms ease;
+}
+
+
+/* =========================================
+   ICONOS
+   ========================================= */
+
+.Dashboard .club-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 60px;
+
+    width: 60px;
+    height: 60px;
+
+    background: #edf5ef;
+    border: 1px solid #deebe2;
+    border-radius: 14px;
+    color: var(--club-green);
+
+    pointer-events: none;
+}
+
+.Dashboard .club-icon svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+
+/* =========================================
+   TEXTO Y FLECHAS
+   ========================================= */
+
+.Dashboard .club-card-copy {
+    flex: 1;
+    min-width: 0;
+    pointer-events: none;
+}
+
+.Dashboard .club-card h2 {
+    margin: 0 0 7px;
+
+    color: var(--club-text);
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+}
+
+.Dashboard .club-card p {
+    margin: 0;
+
+    color: var(--club-muted);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.Dashboard .club-arrow {
+    flex: 0 0 auto;
+
+    color: #6b8676;
+    font-size: 25px;
+    line-height: 1;
+
+    pointer-events: none;
+    transition: transform 180ms ease, color 180ms ease;
+}
+
+
+/* =========================================
+   LIGAS · ACCESO INFERIOR
+   ========================================= */
+
+.Dashboard .club-card-leagues {
+    min-height: 115px;
+    background: #f6f9f7;
+}
+
+.Dashboard .club-card-leagues .club-icon {
+    background: #ffffff;
+}
+
+
+/* =========================================
+   INTERACCIÓN
+   ========================================= */
+
+@media (hover: hover) {
+    .Dashboard .club-card:hover {
+        transform: translateY(-3px);
+        border-color: #9cbca8;
+        box-shadow: 0 10px 24px rgba(16, 43, 34, 0.09);
+    }
+
+    .Dashboard .club-card:hover::before {
+        opacity: 1;
+    }
+
+    .Dashboard .club-card:hover .club-arrow {
+        color: var(--club-green);
+        transform: translateX(4px);
+    }
+}
+
+
+/* =========================================
+   PANTALLAS PEQUEÑAS
+   ========================================= */
+
+@media (max-width: 600px) {
+    .Dashboard .ClubDashboard {
+        padding-top: 8px;
+    }
+
+    .Dashboard .ClubWelcome,
+    .Dashboard .ClubCard {
+        padding: 6px;
+    }
+
+    .Dashboard .club-hero {
+        min-height: 220px;
+        padding: 30px 24px;
+        border-radius: 14px;
+    }
+
+    .Dashboard .club-hero::before {
+        left: 24px;
+    }
+
+    .Dashboard .club-hero h1 {
+        font-size: 30px;
+    }
+
+    .Dashboard .club-hero p {
+        max-width: 260px;
+        font-size: 14px;
+    }
+
+    .Dashboard .club-pitch {
+        right: -155px;
+        opacity: 0.5;
+    }
+
+    .Dashboard .club-card {
+        min-height: 116px;
+        padding: 22px 18px;
+        gap: 15px;
+    }
+
+    .Dashboard .club-icon {
+        flex-basis: 48px;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+    }
+
+    .Dashboard .club-icon svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .Dashboard .club-card h2 {
+        font-size: 20px;
+    }
+
+    .Dashboard .club-card p {
+        font-size: 13px;
+    }
+}
+
+
+/* =========================================
+   MOVIMIENTO REDUCIDO
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .Dashboard .club-card,
+    .Dashboard .club-card::before,
+    .Dashboard .club-arrow {
+        transition: none;
+    }
+
+    .Dashboard .club-card:hover,
+    .Dashboard .club-card:hover .club-arrow {
+        transform: none;
+    }
+}

@@ -173,22 +173,21 @@ Object oZoomJugador is a cWebView
     End_Procedure
 
     Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
-        Case Begin
-            Case (NavigateData.eNavigateType = nfFromMain)
-                // Main-file Select to Zoom.
-                Case Break
+        Boolean bHasRecord
+        String sNombreJugador
 
-            Case (NavigateData.eNavigateType = nfFromParent)
-                // Constrained drill down.
-                Case Break
+        Get HasRecord of ojugador_DD to bHasRecord
 
-            Case (NavigateData.eNavigateType = nfFromChild)
-                // Parent Zoom from a child Zoom.
-                Case Break
+        If (bHasRecord) Begin
+            Move (Trim(jugador.Nombre) * Trim(jugador.Apellido)) to sNombreJugador
 
-            Case Else // nfUndefined
-
-        Case End
+            Send SetHeaderCaption ("Jugador:" * sNombreJugador)
+            Send SetBreadCrumbCaption sNombreJugador
+        End
+        Else Begin
+            Send SetHeaderCaption "Nuevo jugador"
+            Send SetBreadCrumbCaption "Nuevo jugador"
+        End
 
         Send SetActionButtons
     End_Procedure

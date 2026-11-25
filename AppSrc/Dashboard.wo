@@ -4,49 +4,43 @@ Use cWebGroup.pkg
 Use cWebHtmlBox.pkg
 
 Object oDashboard is a cWebView
-    Set piMaxWidth to 1024
+    Set piMaxWidth to 1120
     Set psCaption to "Dashboard"
     Set peViewType to vtUndefined
     Set pbShowCaption to False
     Set psCSSClass to "Dashboard"
 
     Object oWebMainPanel is a cWebPanel
-        Set piColumnCount to 24
-
-        WebSetResponsive piColumnCount rmMobile to 1
-        WebSetResponsive piColumnCount rmTabletPortrait to 16
+        Set piColumnCount to 12
 
         Object oTiles_grp is a cWebGroup
-            Set piColumnSpan to 24
+            Set piColumnSpan to 12
             Set piColumnCount to 12
             Set pbShowBorder to False
             Set pbShowCaption to False
-            Set psCSSClass to "TilesGroup"
+            Set psCSSClass to "ClubDashboard"
 
-            WebSetResponsive piColumnSpan rmMobile to 1
-            WebSetResponsive piColumnSpan rmTabletPortrait to 16
+            WebSetResponsive piColumnCount rmMobile to 1
 
-            // Bienvenida
+            // Bienvenida a todo el ancho
             Object oWelcomeTile is a cWebHtmlBox
-                Set piColumnSpan to 6
+                Set piColumnSpan to 12
                 Set piColumnIndex to 0
-                Set psCSSClass to "Tile Light"
-                Set psHtml to '<div class="WebCon_Sizer"><div class="Tile_Title">Bienvenido</div><div class="Tile_Subtitle">FutbolWebApp</div></div>'
-            End_Object
+                Set psCSSClass to "ClubWelcome"
 
-            // Entrenadores
-            Object oEntrenadoresTile is a cWebHtmlBox
-                Set pbServerOnClick to True
-                Set piColumnSpan to 6
-                Set piColumnIndex to 6
-                Set psCSSClass to "Tile LightAlternate"
-                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Entrenadores</div><div class="Tile_Subtitle">Consultar entrenadores</div></div>'
+                WebSetResponsive piColumnSpan rmMobile to 1
 
-                WebRegisterPath ntNavigateForward oSelectEntrenador
-
-                Procedure OnClick String sId String sParam
-                    Send NavigatePath
-                End_Procedure
+                Set psHtml to ('<div class="club-hero">' + ;
+                    '<div class="club-hero-content">' + ;
+                    '<span class="club-eyebrow">GESTIÓN DEPORTIVA</span>' + ;
+                    '<h1>FutbolWebApp</h1>' + ;
+                    '<p>Tu club, organizado desde el primer minuto.</p>' + ;
+                    '<span class="club-hero-label">EL JUEGO EMPIEZA AQUÍ</span>' + ;
+                    '</div>' + ;
+                    '<div class="club-pitch" aria-hidden="true">' + ;
+                    '<span class="club-pitch-circle"></span>' + ;
+                    '</div>' + ;
+                    '</div>')
             End_Object
 
             // Jugadores
@@ -54,25 +48,51 @@ Object oDashboard is a cWebView
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set piColumnIndex to 0
-                Set psCSSClass to "Tile Dark"
-                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Jugadores</div><div class="Tile_Subtitle">Consultar jugadores</div></div>'
+                Set psCSSClass to "ClubCard"
 
-                WebRegisterPath ntNavigateForward oSelectJugador
+                WebSetResponsive piColumnSpan rmMobile to 1
+                WebSetResponsive piColumnIndex rmMobile to 0
+
+                Set psHtml to ('<div class="club-card" data-ServerOnClick="openview">' + ;
+                    '<div class="club-icon" aria-hidden="true">' + ;
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ;
+                    '<path d="M8 3L3 6l-2 5 4 2 2-3v11h10V10l2 3 4-2-2-5-5-3"/>' + ;
+                    '<path d="M8 3c0 4 8 4 8 0"/>' + ;
+                    '</svg></div>' + ;
+                    '<div class="club-card-copy"><h2>Jugadores</h2>' + ;
+                    '<p>Consulta y gestiona tu plantilla.</p></div>' + ;
+                    '<span class="club-arrow" aria-hidden="true">&#8594;</span>' + ;
+                    '</div>')
+
+                WebRegisterPath ntNavigateForwardCustom oSelectJugador
 
                 Procedure OnClick String sId String sParam
                     Send NavigatePath
                 End_Procedure
             End_Object
 
-            // Posiciones
-            Object oPosicionesTile is a cWebHtmlBox
+            // Entrenadores
+            Object oEntrenadoresTile is a cWebHtmlBox
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set piColumnIndex to 6
-                Set psCSSClass to "Tile DarkAlternate"
-                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Posiciones</div><div class="Tile_Subtitle">Consultar posiciones</div></div>'
+                Set psCSSClass to "ClubCard"
 
-                WebRegisterPath ntNavigateForward oSelectPosicion
+                WebSetResponsive piColumnSpan rmMobile to 1
+                WebSetResponsive piColumnIndex rmMobile to 0
+
+                Set psHtml to ('<div class="club-card" data-ServerOnClick="openview">' + ;
+                    '<div class="club-icon" aria-hidden="true">' + ;
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ;
+                    '<rect x="3" y="3" width="18" height="14" rx="2"/>' + ;
+                    '<path d="M8 21l4-4 4 4M7 12l4-5 5 5M13 12h3V9"/>' + ;
+                    '</svg></div>' + ;
+                    '<div class="club-card-copy"><h2>Entrenadores</h2>' + ;
+                    '<p>Organiza el cuerpo técnico.</p></div>' + ;
+                    '<span class="club-arrow" aria-hidden="true">&#8594;</span>' + ;
+                    '</div>')
+
+                WebRegisterPath ntNavigateForwardCustom oSelectEntrenador
 
                 Procedure OnClick String sId String sParam
                     Send NavigatePath
@@ -84,10 +104,52 @@ Object oDashboard is a cWebView
                 Set pbServerOnClick to True
                 Set piColumnSpan to 6
                 Set piColumnIndex to 0
-                Set psCSSClass to "Tile Light"
-                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Equipos</div><div class="Tile_Subtitle">Consultar equipos</div></div>'
+                Set psCSSClass to "ClubCard"
 
-                WebRegisterPath ntNavigateForward oSelectEquipo
+                WebSetResponsive piColumnSpan rmMobile to 1
+                WebSetResponsive piColumnIndex rmMobile to 0
+
+                Set psHtml to ('<div class="club-card" data-ServerOnClick="openview">' + ;
+                    '<div class="club-icon" aria-hidden="true">' + ;
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ;
+                    '<path d="M12 2l8 3v6c0 5-4 9-8 11-4-2-8-6-8-11V5l8-3z"/>' + ;
+                    '<path d="M8 9h8M12 6v11"/>' + ;
+                    '</svg></div>' + ;
+                    '<div class="club-card-copy"><h2>Equipos</h2>' + ;
+                    '<p>Gestiona los equipos del club.</p></div>' + ;
+                    '<span class="club-arrow" aria-hidden="true">&#8594;</span>' + ;
+                    '</div>')
+
+                WebRegisterPath ntNavigateForwardCustom oSelectEquipo
+
+                Procedure OnClick String sId String sParam
+                    Send NavigatePath
+                End_Procedure
+            End_Object
+
+            // Posiciones
+            Object oPosicionesTile is a cWebHtmlBox
+                Set pbServerOnClick to True
+                Set piColumnSpan to 6
+                Set piColumnIndex to 6
+                Set psCSSClass to "ClubCard"
+
+                WebSetResponsive piColumnSpan rmMobile to 1
+                WebSetResponsive piColumnIndex rmMobile to 0
+
+                Set psHtml to ('<div class="club-card" data-ServerOnClick="openview">' + ;
+                    '<div class="club-icon" aria-hidden="true">' + ;
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ;
+                    '<rect x="3" y="2" width="18" height="20" rx="2"/>' + ;
+                    '<path d="M3 12h18M8 2v4h8V2M8 22v-4h8v4"/>' + ;
+                    '<circle cx="12" cy="12" r="3"/>' + ;
+                    '</svg></div>' + ;
+                    '<div class="club-card-copy"><h2>Posiciones</h2>' + ;
+                    '<p>Cada jugador, en su lugar.</p></div>' + ;
+                    '<span class="club-arrow" aria-hidden="true">&#8594;</span>' + ;
+                    '</div>')
+
+                WebRegisterPath ntNavigateForwardCustom oSelectPosicion
 
                 Procedure OnClick String sId String sParam
                     Send NavigatePath
@@ -97,12 +159,24 @@ Object oDashboard is a cWebView
             // Ligas
             Object oLigasTile is a cWebHtmlBox
                 Set pbServerOnClick to True
-                Set piColumnSpan to 6
-                Set piColumnIndex to 6
-                Set psCSSClass to "Tile LightAlternate"
-                Set psHtml to '<div class="WebCon_Sizer" data-ServerOnClick="openview"><div class="Tile_Title">Ligas</div><div class="Tile_Subtitle">Consultar ligas</div></div>'
+                Set piColumnSpan to 12
+                Set piColumnIndex to 0
+                Set psCSSClass to "ClubCard"
 
-                WebRegisterPath ntNavigateForward oSelectLiga
+                WebSetResponsive piColumnSpan rmMobile to 1
+
+                Set psHtml to ('<div class="club-card club-card-leagues" data-ServerOnClick="openview">' + ;
+                    '<div class="club-icon" aria-hidden="true">' + ;
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' + ;
+                    '<path d="M7 3h10v5c0 4-2 6-5 6s-5-2-5-6V3z"/>' + ;
+                    '<path d="M7 5H3v2c0 3 2 5 5 5M17 5h4v2c0 3-2 5-5 5M12 14v5M8 21h8M9 19h6"/>' + ;
+                    '</svg></div>' + ;
+                    '<div class="club-card-copy"><h2>Ligas</h2>' + ;
+                    '<p>Consulta las competiciones.</p></div>' + ;
+                    '<span class="club-arrow" aria-hidden="true">&#8594;</span>' + ;
+                    '</div>')
+
+                WebRegisterPath ntNavigateForwardCustom oSelectLiga
 
                 Procedure OnClick String sId String sParam
                     Send NavigatePath
